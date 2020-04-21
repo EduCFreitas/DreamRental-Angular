@@ -1,0 +1,9 @@
+#link-texto{
+    color: rgb(0, 0, 0);
+}
+
+#link-texto:hover{
+    color: #21287c;
+    text-decoration: none;
+    font-weight: bolder;
+}
