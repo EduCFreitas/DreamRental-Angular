@@ -18,8 +18,8 @@
                     <a href="/contact" class="nav-link">Contato</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navDrop">Social</a>
-                    <div class="dropdown-menu bg-light">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">Social</a>
+                    <div class="dropdown-menu bg-light" aria-labelledby="navbarDropdown">
                         <a href="#" class="dropdown-item">
                             <fa-icon [icon]="faFacebook" class="faFacebook fa-1x p-1"></fa-icon>Facebook
                         </a>
@@ -31,7 +31,9 @@
             </ul>
             <form action="#" class="form-inline ml-auto">
                 <input type="search" class="form-control mr-1" placeholder="Buscar...">
-                <button class="btn btn-secondary" type="submit">Ok</button>
+                <button class="btn btn-secondary" type="submit">
+                    <fa-icon [icon]="faSearch" class="faCar fa-1x p-1"></fa-icon>
+                </button>
             </form>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
