@@ -7,26 +7,46 @@
                     <h1 class="h2 font-weight-light text-center mb-4">Contate-Nos</h1>
                     <div class="row justify-content-center">
                         <div class="col-sm-12 col-md-10 col-lg-10">
-                            <form action="#">
+                            <form #Formulario="ngForm">
                                 <div class="form-row">
-                                    <div class="form-group col-sm-12 text-left mb-3">
-                                        <label for="#nome">Nome:</label>
-                                        <input type="text" name="" id="nome" class="form-control bg-transparent" placeholder="Informe seu nome completo" autofocus>
+                                    <div class="form-group col-sm-12 text-left mb-3" [ngClass]="{'tem-erro': !nome.valid && (nome.dirty || nome.touched)}">
+                                        <label for="#nome" class="control-label">Nome:</label>
+                                        <input type="text" name="nome" id="nome" class="form-control bg-transparent" placeholder="Informe seu nome completo" autofocus [(ngModel)]="nomeModel" #nome="ngModel" required minlength="3"  maxlength="50">
+                                        <span class="help-block" *ngIf="nome.errors && (nome.dirty || nome.touched)">
+                                            <ul>
+                                                <li *ngIf="nome.errors.required">Preenchimento do campo "nome" obrigatório.</li>
+                                                <li *ngIf="!nome.errors.required && nome.errors.minlength">Mínimo de 3 caracteres.</li>
+                                                <li *ngIf="!nome.errors.required && nome.errors.maxlength">Máximo de 50 caracteres.</li>
+                                            </ul>
+                                        </span>
                                     </div>
-                                    <div class="form-group col-sm-12 text-left mb-3">
+                                    <div class="form-group col-sm-12 text-left mb-3" [ngClass]="{'tem-erro': !email.valid && (email.dirty || email.touched)}">
                                         <label for="#email">E-mail:</label>
-                                        <input type="email" name="" id="email" class="form-control bg-transparent" placeholder="Informe seu e-mail">
+                                        <input type="email" name="email" id="email" class="form-control bg-transparent" placeholder="Informe seu e-mail" [(ngModel)]="emailModel" #email="ngModel" required email>
+                                        <span class="help-block" *ngIf="email.errors && (email.dirty || email.touched)">
+                                            <ul>
+                                                <li *ngIf="email.errors.required">Preenchimento do campo e-mail obrigatório.</li>
+                                                <li *ngIf="email.errors.email">O e-mail informado é inválido.</li>
+                                            </ul>
+                                        </span>
                                     </div>
-                                    <div class="form-group col-sm-12 text-left mb-4">
+                                    <div class="form-group col-sm-12 text-left mb-3" [ngClass]="{'tem-erro': !telefone.valid && (telefone.dirty || telefone.touched)}">
                                         <label for="#telefone">Telefone:</label>
-                                        <input type="tel" name="" id="telefone" class="form-control bg-transparent" placeholder="Informe seu telefone">
+                                        <input type="tel" name="telefone" id="telefone" class="form-control bg-transparent" placeholder="Informe seu telefone" [(ngModel)]="telefoneModel" #telefone="ngModel" required pattern="(\(?\d{2}\)?\s)?(\d{4,5}\-\d{4})">
+                                        <span class="help-block" *ngIf="telefone.errors && (telefone.dirty || telefone.touched)">
+                                            <ul>
+                                                <li *ngIf="telefone.errors.required">Preenchimento do campo "telefone" obrigatório.</li>
+                                                <li *ngIf="telefone.errors.pattern">O telefone informado é inválido. Exemplos de preenchimento:</li>
+                                                <li class="num-tel" *ngIf="telefone.errors.pattern">(12) 34567-8901 | 12 3456-7890 | 98765-4321</li>
+                                            </ul>
+                                        </span>
                                     </div>
                                     <div class="form-group col-sm-12 text-left mb-4">
                                         <label for="#mensagem">Mensagem:</label>
-                                        <textarea name="" id="mensagem" cols="30" rows="5" class="form-control bg-transparent" placeholder="Informe sua mensagem"></textarea>
+                                        <textarea name="mensagem" id="mensagem" cols="30" rows="5" class="form-control bg-transparent" placeholder="Informe sua mensagem"></textarea>
                                     </div>
                                     <div class="form-group col-sm-12">
-                                        <button type="submit" class="btn btn-lg btn-secondary text-white" id="btnEnviar">Enviar</button>
+                                        <button type="submit" class="btn btn-lg btn-secondary text-white" id="btnEnviar" [disabled]="!Formulario.valid">Enviar</button>
                                     </div>
                                 </div>
                             </form>
